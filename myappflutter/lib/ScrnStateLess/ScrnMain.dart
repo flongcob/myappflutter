@@ -17,7 +17,7 @@ class _ScrnMain extends State<ScrnMain>{
         return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: "Main",
-            home: ScrnList(),
+            home: ScrnA2B(),
         );
     }
 

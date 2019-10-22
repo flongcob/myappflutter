@@ -14,6 +14,8 @@ class ScrnList extends StatefulWidget{
 
 class _ScrnList extends State<ScrnList>{
     
+    var _isVisble = true;
+    
     @override Widget build(BuildContext context) {
         return MaterialApp(
             title: 'Screen List',
@@ -29,6 +31,10 @@ class _ScrnList extends State<ScrnList>{
     }
     
     void _onTapFunctor(int i){
+        print('On Press $i !!!!');
+    }
+
+    void _onTapFunctor2(String i){
         print('On Press $i !!!!');
     }
     
@@ -77,8 +83,8 @@ class _ScrnList extends State<ScrnList>{
         List<String> list = List<String>.generate(20, (i){
             return 'Item $i';
         });
-
-        Iterable<Card> i = list.map((str){
+        
+        Iterable<Card> it = list.map((str){
             return Card(
                 key: Key(str),
                 elevation: 2,
@@ -133,7 +139,6 @@ class _ScrnList extends State<ScrnList>{
             );
         });
         
-        return i.toList();
+        return it.toList();
     }
-    
 }

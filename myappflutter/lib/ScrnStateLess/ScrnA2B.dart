@@ -15,6 +15,8 @@ class ScrnA2B extends StatefulWidget{
 
 class _ScrnA2B extends State<ScrnA2B>{
 
+    bool _isVisible = true;
+    
     Future<Route> createRouteTo(Widget screen) async {
         await Navigator.of(context).push(
             PageRouteBuilder(
@@ -40,6 +42,8 @@ class _ScrnA2B extends State<ScrnA2B>{
     }
     
     
+    //bouncy button on tap
+    //https://medium.com/flutter-community/flutter-bouncing-button-animation-ece660e19c91
     @override
     Widget build(BuildContext context) {
         return Scaffold(
@@ -52,8 +56,26 @@ class _ScrnA2B extends State<ScrnA2B>{
                 ],
             ),
             body: Center(
-                child: Text('Child'),
+                child: AnimatedOpacity(
+                    opacity: _isVisible ? 1.0 : 0.5,
+                    duration: Duration(milliseconds: 50),
+                    child: RaisedButton(
+                        child: Text('Click Me'),
+                        onPressed: (){
+                            _isVisible = _isVisible ? false : true;
+                            setState(() {
+                            });
+                        },
+                    ),
+                ),
             ),
         );
     }
+    
+    Stream<bool> getOpacityStream() => Stream<bool>.periodic(Duration(milliseconds: 500), (i){} )
+            .map((i){
+                return i == 0 ? false : true;
+        }).take(2);
+    
+    //var opacityStream = Stream<bool>.periodic(Duration(milliseconds: 500), (i)=> i == 1 ).take(2);
 }
